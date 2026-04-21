@@ -13,3 +13,7 @@ Route::get('/room', function () {
 Route::get('/reminder', function () {
     return view('reminder');
 });
+
+Route::get('/materifile', function () {
+    return view('materifile');
+});
