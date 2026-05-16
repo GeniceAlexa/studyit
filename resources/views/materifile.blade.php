@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Materi & File</title>
+    <title>Jadwal</title>
     <script src="https://cdn.tailwindcss.com"></script>
 </head>
 <body class="flex h-screen bg-white-100 overflow-hidden">
@@ -65,7 +65,7 @@
             </div>
 
             <div>
-                <a href="#" class="flex items-center gap-3 px-3 py-2 text-sm text-black-500 rounded-lg bg-grey-200 hover:bg-gray-200">
+                <a href="#" class="flex items-center gap-3 px-3 py-2 text-sm shadow-lg text-black-500 rounded-lg bg-grey-200 hover:bg-gray-200">
                    <img src="{{ asset('images/tambah.png') }}" class="w-6 h-6 rounded-full" alt="">
                    Upload File
                 </a>
@@ -79,10 +79,73 @@
                     class="bg-transparent text-sm outline-none w-full text-gray-600 placeholder-gray-400">
             </div>
 
+            <div class="space-y-4 mt-6">
+                <div class="flex items-center gap-2 bg-white-100 border border-black-100 rounded-lg px-2 py-2 w-fit">
+                    <h2 class="text-sm font-medium underline underline-offset-2">6 Total File</h2>
+                </div>
+            </div>
 
-            <div class="space y-3">
-                
-
+            <div class="mt-4 space-y-4">
+                <div class="bg-white rounded-lg p-4 border border-black-100 p-4 flex items-center justify-between">
+                    <div>
+                        <h3>Modul Framework Laravel</h3>
+                        <p class="text-gray-600 text-sm">Citra | 2026 - 02 - 01</p>
+                    </div>
+                    <div class="flex items-center gap-2">
+                        <button class="flex items-center gap-2 flex-shrink-0">
+                            <img src="{{ asset('images/upload.png') }}" class="w-4 h-4 opacity-50" alt="">
+                            <img src="{{ asset('images/sampah.png') }}" class="w-4 h-4 opacity-50" alt="">
+                        </button>
+                    </div>
+                </div>
+                <div class="bg-white rounded-lg p-4 border border-black-100 p-4 flex items-center justify-between">
+                    <div>
+                        <h3>Modul Framework Laravel</h3>
+                        <p class="text-gray-600 text-sm">Citra | 2026 - 02 - 01</p>
+                    </div>
+                    <div class="flex items-center gap-2">
+                        <button class="flex items-center gap-2 flex-shrink-0">
+                            <img src="{{ asset('images/upload.png') }}" class="w-4 h-4 opacity-50" alt="">
+                            <img src="{{ asset('images/sampah.png') }}" class="w-4 h-4 opacity-50" alt="">
+                        </button>
+                    </div>
+                </div>
+                <div class="bg-white rounded-lg p-4 border border-black-100 p-4 flex items-center justify-between">
+                    <div>
+                        <h3>Modul Framework Laravel</h3>
+                        <p class="text-gray-600 text-sm">Citra | 2026 - 02 - 01</p>
+                    </div>
+                    <div class="flex items-center gap-2">
+                        <button class="flex items-center gap-2 flex-shrink-0">
+                            <img src="{{ asset('images/upload.png') }}" class="w-4 h-4 opacity-50" alt="">
+                            <img src="{{ asset('images/sampah.png') }}" class="w-4 h-4 opacity-50" alt="">
+                        </button>
+                    </div>
+                </div>
+                <div class="bg-white rounded-lg p-4 border border-black-100 p-4 flex items-center justify-between">
+                    <div>
+                        <h3>Modul Framework Laravel</h3>
+                        <p class="text-gray-600 text-sm">Citra | 2026 - 02 - 01</p>
+                    </div>
+                    <div class="flex items-center gap-2">
+                        <button class="flex items-center gap-2 flex-shrink-0">
+                            <img src="{{ asset('images/upload.png') }}" class="w-4 h-4 opacity-50" alt="">
+                            <img src="{{ asset('images/sampah.png') }}" class="w-4 h-4 opacity-50" alt="">
+                        </button>
+                    </div>
+                </div>
+                <div class="bg-white rounded-lg p-4 border border-black-100 p-4 flex items-center justify-between">
+                    <div>
+                        <h3>Modul Framework Laravel</h3>
+                        <p class="text-gray-600 text-sm">Citra | 2026 - 02 - 01</p>
+                    </div>
+                    <div class="flex items-center gap-2">
+                        <button class="flex items-center gap-2 flex-shrink-0">
+                            <img src="{{ asset('images/upload.png') }}" class="w-4 h-4 opacity-50" alt="">
+                            <img src="{{ asset('images/sampah.png') }}" class="w-4 h-4 opacity-50" alt="">
+                        </button>
+                    </div>
+                </div>
             </div>
         </main>
     </div>

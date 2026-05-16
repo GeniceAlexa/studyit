@@ -65,7 +65,7 @@
             </div>
 
             <div>
-                <a href="#" class="flex items-center gap-3 px-3 py-2 text-sm text-black-500 rounded-lg bg-grey-200 hover:bg-gray-200">
+                <a href="#" class="flex items-center gap-3 px-3 py-2 shadow-lgtext-sm text-black-500 rounded-lg bg-grey-200 hover:bg-gray-200">
                    <img src="{{ asset('images/tambah.png') }}" class="w-6 h-6 rounded-full" alt="">
                    Buat Reminder
                 </a>
@@ -83,10 +83,10 @@
                     </div>
                     <div class="flex items-center gap-2">
                         <button class="text-gray-400 hover:text-gray-600 px-1 flex-shrink-0">
-                        <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
-                            <circle cx="12" cy="5" r="1.5"/><circle cx="12" cy="12" r="1.5"/><circle cx="12" cy="19" r="1.5"/>
-                        </svg>
-                    </button>
+                            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                                <circle cx="12" cy="5" r="1.5"/><circle cx="12" cy="12" r="1.5"/><circle cx="12" cy="19" r="1.5"/>
+                            </svg>
+                        </button>
                     </div>
                 </div>
                 

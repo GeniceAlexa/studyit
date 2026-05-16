@@ -17,3 +17,7 @@ Route::get('/reminder', function () {
 Route::get('/materifile', function () {
     return view('materifile');
 });
+
+Route::get('/jadwal', function () {
+    return view('jadwal');
+});

@@ -125,7 +125,7 @@
                         <p class="text-xs text-gray-500">Dibuat oleh Kina</p>
                         <p class="text-xs text-gray-500">5/10 anggota</p>
                     </div>
-                    <button class="flex items-center gap-2 bg-gray-900 text-white text-xs font-medium px-4 py-2 rounded-lg hover:bg-gray-700 transition flex-shrink-0">
+                    <button class="flex items-center gap-2 bg-gray-900 shadow-lg text-white text-xs font-medium px-4 py-2 rounded-lg hover:bg-gray-700 transition flex-shrink-0">
                         <img src="{{ asset('images/usertambah.png') }}" class="w-4 h-4 opacity-50" alt="">
                         Gabung
                     </button>
