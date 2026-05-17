@@ -24,7 +24,7 @@
     </style>
 </head>
 
-<body class="bg-gray-800 flex items-center justify-center min-h-screen">
+<body class="bg-white-200 flex items-center justify-center min-h-screen">
 
     <div class="flex w-[850px] h-[520px] bg-white rounded-2xl shadow-2xl overflow-hidden">
 

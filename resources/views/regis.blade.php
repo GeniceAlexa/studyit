@@ -24,11 +24,11 @@
     </style>
 </head>
 
-<body class="bg-gray-800 flex items-center justify-center min-h-screen p-4">
+<body class="bg-white-200 flex items-center justify-center min-h-screen p-4">
 
     <div class="flex w-[850px] min-h-[580px] bg-white rounded-2xl shadow-2xl overflow-hidden">
 
-        <div class="w-1/2 bg-[#e9eef3] relative flex items-center justify-center p-10 overflow-hidden">
+        <div class="w-1/2 bg-[#e9eef3] relative flex items-center justify-center p-10">
 
             <img src="{{ asset('images/l-blob.png') }}"
                 class="absolute top-[-30px] right-[-40px] w-[180px] animate-float z-10">

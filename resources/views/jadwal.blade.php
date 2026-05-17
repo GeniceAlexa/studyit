@@ -36,22 +36,22 @@
                     </a>
                 </li>
                 <li>
-                    <a href="#" class="flex items-center gap-3 px-3 py-2 rounded-lg text-gray-400 hover:bg-gray-700 hover:text-white text-sm transition">
+                    <a href="materifile" class="flex items-center gap-3 px-3 py-2 rounded-lg text-gray-400 hover:bg-gray-700 hover:text-white text-sm transition">
                         <img src="{{ asset('images/materi.png') }}" class="w-4 h-4" alt="">
                         Materi & File
                     </a>
                 </li>
                 <li>
-                    <a href="#" class="flex items-center gap-3 px-3 py-2 rounded-lg text-gray-400 hover:bg-gray-700 hover:text-white text-sm transition">
-                        <img src="{{ asset('images/chat.png') }}" class="w-4 h-4" alt="">
+                    <a href="chat" class="flex items-center gap-3 px-3 py-2 rounded-lg text-gray-400 hover:bg-gray-700 hover:text-white text-sm transition">
+                        <img src="{{ asset('images/chat.png') }}" class="w-4 h-4" alt="Chat">
                         Chat
                     </a>
                 </li>
             </ul>
 
             <div class="px-3">
-                <a href="#" class="flex items-center gap-3 px-3 py-2 rounded-lg text-gray-400 hover:bg-gray-700 hover:text-white text-sm transition">
-                    <img src="{{ asset('images/pengaturan.png') }}" class="w-4 h-4" alt="">
+                <a href="pengaturan" class="flex items-center gap-3 px-3 py-2 rounded-lg text-gray-400 hover:bg-gray-700 hover:text-white text-sm transition">
+                    <img src="{{ asset('images/pengaturan.png') }}" class="w-4 h-4" alt="Pengaturan">
                     Pengaturan
                 </a>
             </div>
