@@ -93,7 +93,7 @@
 
                     <div class="mb-5">
                         <label class="text-xs font-medium text-gray-600">Konfirmasi Password</label>
-                        <input type="password" name="password_konfirmasi" required
+                        <input type="password" name="password_confirmation" required
                             class="w-full mt-1 border border-gray-300 rounded-md px-3 py-1.5 text-sm
                             focus:outline-none focus:ring-2 focus:ring-blue-200 focus:border-blue-400">
                     </div>

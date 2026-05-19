@@ -2,6 +2,9 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\AuthController;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Session;
 
 
 Route::get('/', function () {
@@ -9,6 +12,11 @@ Route::get('/', function () {
 });
 
 Route::get('/dashboard', function () {
+
+    if (!session('user')) {
+        return redirect('/login');
+    }
+
     return view('dashboard');
 });
 
@@ -52,7 +60,19 @@ Route::get('/login', function () {
 });
 
 Route::post('/login', function (Request $request) {
-    // proses login nanti di sini
+     $request->validate([
+        'email' => 'required|email',
+        'password' => 'required',
+    ]);
+
+    $user = DB::table('users')->where('email', $request->email)->first();
+
+    if ($user && $request->password == $user->password) {
+    Session::put('user', $user);
+    return redirect('/dashboard');
+    }
+
+    return back()->with('error', 'Email atau password salah');
 })->name('login');
 
 Route::get('/regis', function () {
@@ -60,5 +80,20 @@ Route::get('/regis', function () {
 });
 
 Route::post('/regis', function (Request $request) {
-    // proses pendaftaran nanti di sini
+
+    $request->validate([
+        'name' => 'required',
+        'email' => 'required|email|unique:users,email',
+        'password' => 'required|min:6|confirmed',
+    ]);
+
+    DB::table('users')->insert([
+        'name' => $request->name,
+        'email' => $request->email,
+        'password' => $request->password,
+        'created_at' => now(),
+        'update_at' => now(),
+    ]);
+
+    return redirect('/login')->with('success', 'Registrasi berhasil!');
 })->name('regis');

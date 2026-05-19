@@ -28,17 +28,14 @@
 
     <div class="flex w-[850px] h-[520px] bg-white rounded-2xl shadow-2xl overflow-hidden">
 
-        <!-- LEFT -->
         <div class="w-1/2 bg-[#e9eef3] relative flex items-center justify-center p-10">
 
-            <!-- Blob Atas -->
             <img src="{{ asset('images/l-blob.png') }}"
                 class="absolute top-[-30px] right-[-40px] w-[180px] animate-float z-10">
 
             <img src="{{ asset('images/l-blob1.png') }}"
                 class="absolute bottom-[-40px] left-[1px] w-[180px] opacity-50 animate-float-delay">
 
-            <!-- Text -->
             <div class="text-center z-10">
                 <h2 class="text-2xl font-bold text-gray-800 mb-4">
                     Selamat Datang di Studyit
@@ -51,7 +48,6 @@
             </div>
         </div>
 
-        <!-- RIGHT -->
         <div class="w-1/2 flex items-center justify-center bg-white">
 
             <div class="w-[85%] border border-gray-300 rounded-2xl p-8 shadow-sm">
@@ -63,6 +59,12 @@
                 <p class="text-xs text-gray-400 mb-6">
                     Masuk menggunakan email dan password
                 </p>
+
+                @if(session('error'))
+                <div class="bg-red-100 text-red-600 p-2 rounded mb-3 text-sm">
+                    {{ session('error') }}
+                </div>
+            @endif
 
                 <form method="POST" action="{{ route('login') }}">
                     @csrf
