@@ -12,26 +12,26 @@
 
         <ul class="flex-1 px-3 space-y-1">
             <li>
-                <a href="dashboard" class="flex items-center gap-3 px-3 py-2 rounded-lg text-white bg-gray-700 text-sm">
-                    <img src="{{ asset('images/dashboard.png') }}" class="w-4 h-4" alt="">
+                <a href="dashboard" class="flex items-center gap-3 px-3 py-2 rounded-lg text-gray-400 hover:bg-gray-700 hover:text-white text-sm transition">
+                    <img src="{{ asset('images/dashboard.png') }}" class="w-4 h-4" alt="dashboard">
                     Dashboard
                 </a>
             </li>
             <li>
                 <a href="room" class="flex items-center gap-3 px-3 py-2 rounded-lg text-gray-400 hover:bg-gray-700 hover:text-white text-sm transition">
-                    <img src="{{ asset('images/profile.png') }}" class="w-4 h-4" alt="">
+                    <img src="{{ asset('images/profile.png') }}" class="w-4 h-4" alt="Room belajar">
                     Room Belajar
                 </a>
             </li>
             <li>
                 <a href="jadwal" class="flex items-center gap-3 px-3 py-2 rounded-lg text-gray-400 hover:bg-gray-700 hover:text-white text-sm transition">
-                    <img src="{{ asset('images/jadwal.png') }}" class="w-4 h-4" alt="">
+                    <img src="{{ asset('images/jadwal.png') }}" class="w-4 h-4" alt="Jadwal">
                     Jadwal
                 </a>
             </li>
             <li>
                 <a href="reminder" class="flex items-center gap-3 px-3 py-2 rounded-lg text-gray-400 hover:bg-gray-700 hover:text-white text-sm transition">
-                    <img src="{{ asset('images/notif.png') }}" class="w-4 h-4" alt="">
+                    <img src="{{ asset('images/notif.png') }}" class="w-4 h-4" alt="Reminder">
                     Reminder
                 </a>
             </li>
@@ -65,7 +65,7 @@
             </div>
 
             <div>
-                <a href="#" class="flex items-center gap-3 px-3 py-2 text-sm text-black-500 background-gray-200 rounded-lg hover:bg-gray-200 transition">
+                <a href="#" class="flex items-center gap-3 px-3 py-2 text-sm shadow-lg text-black-500 rounded-lg bg-grey-200 hover:bg-gray-200">
                    <img src="{{ asset('images/tambah.png') }}" class="w-6 h-6 rounded-full" alt="">
                    Buat Room
                 </a>
@@ -81,9 +81,10 @@
             
             <div class="space-y-3">
 
-                <!-- Room Item -->
                 <div class="bg-white rounded-xl border border-gray-200 px-5 py-4 flex items-center gap-4 hover:shadow-sm transition">
-                    <div class="w-12 h-12 bg-gray-200 rounded-lg flex-shrink-0"></div>
+                    <div class="w-12 h-12 bg-gray-100 rounded-lg flex items-center justify-center flex-shrink-0">
+                        <img src="{{ asset('images/profile.png') }}" class="w-6 h-6 object-contain" alt="">
+                    </div>
                     <div class="flex-1 min-w-0">
                         <h2 class="text-sm font-semibold text-gray-900">Statistika</h2>
                         <p class="text-xs text-gray-500">Dibuat oleh Rara</p>
@@ -101,10 +102,12 @@
                 </div>
 
                 <div class="bg-white rounded-xl border border-gray-200 px-5 py-4 flex items-center gap-4 hover:shadow-sm transition">
-                    <div class="w-12 h-12 bg-gray-200 rounded-lg flex-shrink-0"></div>
+                    <div class="w-12 h-12 bg-gray-100 rounded-lg flex items-center justify-center flex-shrink-0">
+                        <img src="{{ asset('images/profile.png') }}" class="w-6 h-6 object-contain" alt="">
+                    </div>
                     <div class="flex-1 min-w-0">
-                        <h2 class="text-sm font-semibold text-gray-900">Algoritma & Pemrograman</h2>
-                        <p class="text-xs text-gray-500">Dibuat oleh gara</p>
+                        <h2 class="text-sm font-semibold text-gray-900">Statistika</h2>
+                        <p class="text-xs text-gray-500">Dibuat oleh Rara</p>
                         <p class="text-xs text-gray-500">5/10 anggota</p>
                     </div>
                     <button class="flex items-center gap-2 bg-gray-900 text-white text-xs font-medium px-4 py-2 rounded-lg hover:bg-gray-700 transition flex-shrink-0">
@@ -119,13 +122,15 @@
                 </div>
 
                 <div class="bg-white rounded-xl border border-gray-200 px-5 py-4 flex items-center gap-4 hover:shadow-sm transition">
-                    <div class="w-12 h-12 bg-gray-200 rounded-lg flex-shrink-0"></div>
+                    <div class="w-12 h-12 bg-gray-100 rounded-lg flex items-center justify-center flex-shrink-0">
+                        <img src="{{ asset('images/profile.png') }}" class="w-6 h-6 object-contain" alt="">
+                    </div>
                     <div class="flex-1 min-w-0">
-                        <h2 class="text-sm font-semibold text-gray-900">Basis Data</h2>
-                        <p class="text-xs text-gray-500">Dibuat oleh Kina</p>
+                        <h2 class="text-sm font-semibold text-gray-900">Statistika</h2>
+                        <p class="text-xs text-gray-500">Dibuat oleh Rara</p>
                         <p class="text-xs text-gray-500">5/10 anggota</p>
                     </div>
-                    <button class="flex items-center gap-2 bg-gray-900 shadow-lg text-white text-xs font-medium px-4 py-2 rounded-lg hover:bg-gray-700 transition flex-shrink-0">
+                    <button class="flex items-center gap-2 bg-gray-900 text-white text-xs font-medium px-4 py-2 rounded-lg hover:bg-gray-700 transition flex-shrink-0">
                         <img src="{{ asset('images/usertambah.png') }}" class="w-4 h-4 opacity-50" alt="">
                         Gabung
                     </button>
@@ -137,10 +142,12 @@
                 </div>
 
                 <div class="bg-white rounded-xl border border-gray-200 px-5 py-4 flex items-center gap-4 hover:shadow-sm transition">
-                    <div class="w-12 h-12 bg-gray-200 rounded-lg flex-shrink-0"></div>
+                    <div class="w-12 h-12 bg-gray-100 rounded-lg flex items-center justify-center flex-shrink-0">
+                        <img src="{{ asset('images/profile.png') }}" class="w-6 h-6 object-contain" alt="">
+                    </div>
                     <div class="flex-1 min-w-0">
-                        <h2 class="text-sm font-semibold text-gray-900">Pemrograman Berorientasi Objek</h2>
-                        <p class="text-xs text-gray-500">Dibuat oleh Cia</p>
+                        <h2 class="text-sm font-semibold text-gray-900">Statistika</h2>
+                        <p class="text-xs text-gray-500">Dibuat oleh Rara</p>
                         <p class="text-xs text-gray-500">5/10 anggota</p>
                     </div>
                     <button class="flex items-center gap-2 bg-gray-900 text-white text-xs font-medium px-4 py-2 rounded-lg hover:bg-gray-700 transition flex-shrink-0">

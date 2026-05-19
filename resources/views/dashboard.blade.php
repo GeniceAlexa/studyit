@@ -12,26 +12,26 @@
 
         <ul class="flex-1 px-3 space-y-1">
             <li>
-                <a href="dashboard" class="flex items-center gap-3 px-3 py-2 rounded-lg text-white bg-gray-700 text-sm">
-                    <img src="{{ asset('images/dashboard.png') }}" class="w-4 h-4" alt="">
+                <a href="dashboard" class="flex items-center gap-3 px-3 py-2 rounded-lg text-gray-400 hover:bg-gray-700 hover:text-white text-sm transition">
+                    <img src="{{ asset('images/dashboard.png') }}" class="w-4 h-4" alt="dashboard">
                     Dashboard
                 </a>
             </li>
             <li>
                 <a href="room" class="flex items-center gap-3 px-3 py-2 rounded-lg text-gray-400 hover:bg-gray-700 hover:text-white text-sm transition">
-                    <img src="{{ asset('images/profile.png') }}" class="w-4 h-4" alt="">
+                    <img src="{{ asset('images/profile.png') }}" class="w-4 h-4" alt="Room belajar">
                     Room Belajar
                 </a>
             </li>
             <li>
                 <a href="jadwal" class="flex items-center gap-3 px-3 py-2 rounded-lg text-gray-400 hover:bg-gray-700 hover:text-white text-sm transition">
-                    <img src="{{ asset('images/jadwal.png') }}" class="w-4 h-4" alt="">
+                    <img src="{{ asset('images/jadwal.png') }}" class="w-4 h-4" alt="Jadwal">
                     Jadwal
                 </a>
             </li>
             <li>
                 <a href="reminder" class="flex items-center gap-3 px-3 py-2 rounded-lg text-gray-400 hover:bg-gray-700 hover:text-white text-sm transition">
-                    <img src="{{ asset('images/notif.png') }}" class="w-4 h-4" alt="">
+                    <img src="{{ asset('images/notif.png') }}" class="w-4 h-4" alt="Reminder">
                     Reminder
                 </a>
             </li>
@@ -66,7 +66,7 @@
             </div>
             <div class="flex items-center gap-2 text-sm text-gray-500 cursor-pointer">
                 <img src="{{ asset('images/user.png') }}" class="w-5 h-5" alt="">
-                <span>{{ auth()->user()->name ?? 'Username' }}</span>
+                <span>{{ session('user')->name ?? 'Username' }}</span>
             </div>
         </header>
 

@@ -12,32 +12,32 @@
 
         <ul class="flex-1 px-3 space-y-1">
             <li>
-                <a href="dashboard" class="flex items-center gap-3 px-3 py-2 rounded-lg text-white bg-gray-700 text-sm">
-                    <img src="{{ asset('images/dashboard.png') }}" class="w-4 h-4" alt="">
+                <a href="dashboard" class="flex items-center gap-3 px-3 py-2 rounded-lg text-gray-400 hover:bg-gray-700 hover:text-white text-sm transition">
+                    <img src="{{ asset('images/dashboard.png') }}" class="w-4 h-4" alt="dashboard">
                     Dashboard
                 </a>
             </li>
             <li>
                 <a href="room" class="flex items-center gap-3 px-3 py-2 rounded-lg text-gray-400 hover:bg-gray-700 hover:text-white text-sm transition">
-                    <img src="{{ asset('images/profile.png') }}" class="w-4 h-4" alt="">
+                    <img src="{{ asset('images/profile.png') }}" class="w-4 h-4" alt="Room belajar">
                     Room Belajar
                 </a>
             </li>
             <li>
                 <a href="jadwal" class="flex items-center gap-3 px-3 py-2 rounded-lg text-gray-400 hover:bg-gray-700 hover:text-white text-sm transition">
-                    <img src="{{ asset('images/jadwal.png') }}" class="w-4 h-4" alt="">
+                    <img src="{{ asset('images/jadwal.png') }}" class="w-4 h-4" alt="Jadwal">
                     Jadwal
                 </a>
             </li>
             <li>
                 <a href="reminder" class="flex items-center gap-3 px-3 py-2 rounded-lg text-gray-400 hover:bg-gray-700 hover:text-white text-sm transition">
-                    <img src="{{ asset('images/notif.png') }}" class="w-4 h-4" alt="">
+                    <img src="{{ asset('images/notif.png') }}" class="w-4 h-4" alt="Reminder">
                     Reminder
                 </a>
             </li>
             <li>
                 <a href="materifile" class="flex items-center gap-3 px-3 py-2 rounded-lg text-gray-400 hover:bg-gray-700 hover:text-white text-sm transition">
-                    <img src="{{ asset('images/materi.png') }}" class="w-4 h-4" alt="">
+                    <img src="{{ asset('images/materi.png') }}" class="w-4 h-4" alt="Materi & File">
                     Materi & File
                 </a>
             </li>
@@ -81,7 +81,7 @@
 
             <div class="space-y-4 mt-6">
                 <div class="flex items-center gap-2 bg-white-100 border border-black-100 rounded-lg px-2 py-2 w-fit">
-                    <h2 class="text-sm font-medium underline underline-offset-2">6 Total File</h2>
+                    <h2 class="text-sm font-medium underline underline-offset-2"> <span> {{ optional(session('reminders'))->id_user ?? '0' }}</span> Total File</h2>
                 </div>
             </div>
 
