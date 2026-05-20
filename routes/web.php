@@ -5,7 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Session;
-
+use App\Http\Controllers\RoomController;
 
 Route::get('/', function () {
     return view('landingpage');
@@ -24,6 +24,9 @@ Route::get('/room', function () {
     return view('room');
 });
 
+Route::get('/room', [RoomController::class, 'index'])->name('room');
+Route::post('/room/store', [RoomController::class, 'store'])->name('room.store');
+Route::post('/room/gabung/{id}', [RoomController::class, 'gabung'])->name('room.gabung');
 Route::get('/reminder', function () {
     return view('reminder');
 });
@@ -60,18 +63,16 @@ Route::get('/login', function () {
 });
 
 Route::post('/login', function (Request $request) {
-     $request->validate([
-        'email' => 'required|email',
-        'password' => 'required',
-    ]);
-
+    $request->validate(['email' => 'required|email', 'password' => 'required']);
+    
+    // Gunakan first() untuk mendapatkan object user
     $user = DB::table('users')->where('email', $request->email)->first();
 
     if ($user && $request->password == $user->password) {
-    Session::put('user', $user);
-    return redirect('/dashboard');
+        // SIMPAN LANGSUNG SELURUH OBJECT
+        Session::put('user', $user); 
+        return redirect('/dashboard');
     }
-
     return back()->with('error', 'Email atau password salah');
 })->name('login');
 

@@ -9,22 +9,13 @@ use Illuminate\Notifications\Notifiable;
 
 class User extends Authenticatable
 {
-    protected $table = 'users';
-
     protected $primaryKey = 'id_user';
+    protected $fillable = ['name', 'email', 'password'];
 
-    public $incrementing = true;
-
-    protected $keyType = 'int';
-
-    protected $fillable = [
-        'name',
-        'email',
-        'password'
-    ];
-
-    protected $hidden = [
-        'password',
-        'remember_token',
-    ];
+    // Menghubungkan ke pivot table
+    public function rooms()
+    {
+        return $this->belongsToMany(Room::class, 'room_members', 'id_user', 'id_rooms')
+                    ->withPivot('role');
+    }
 }
