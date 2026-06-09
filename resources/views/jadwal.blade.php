@@ -3,9 +3,36 @@
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Materi & File</title>
+        <title>Jadwal</title>
         <script src="https://cdn.tailwindcss.com"></script>
+        <script src="https://cdn.jsdelivr.net/npm/lemonadejs/dist/lemonade.min.js"></script>
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@calendarjs/ce/dist/style.min.css" />
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Material+Icons" />
+        <script src="https://cdn.jsdelivr.net/npm/@calendarjs/ce/dist/index.min.js"></script>
     </head>
+    <style>
+        .has-jadwal {
+            position: relative;
+            font-weight: 600;
+        }
+        .has-jadwal::after {
+            content: '';
+            position: absolute;
+            bottom: 2px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 5px;
+            height: 5px;
+            background-color: #5E7C99;
+            border-radius: 50%;
+        }
+        .lm-calendar-content div[data-selected="true"] {
+            background-color: #9CCFFF ;
+            color: #ffffff !important;
+            font-weight: 600;
+            border-radius: 100px;
+        }
+    </style>
     <body class="flex h-screen bg-white-100 overflow-hidden">
         <aside class="w-44 bg-white-900 flex flex-col py-6 flex-shrink-0">
             <div class="text-black font-bold text-lg px-5 mb-6">Studyit</div>
@@ -64,117 +91,166 @@
                     <h2 class="text-gray-600 text-sm">Lihat dan kelola jadwal Anda</h2>
                 </div>
 
-                <div>
-                    <a href="#" class="flex items-center gap-3 px-3 py-2 text-sm shadow-lg text-black-500 rounded-lg bg-grey-200 hover:bg-gray-200">
-                    <img src="{{ asset('images/tambah.png') }}" class="w-6 h-6 rounded-full" alt="">
+                <button onclick="document.getElementById('modalBuat').classList.remove('hidden')" class="flex items-center gap-3 px-3 py-2 text-sm shadow-lg text-black rounded-lg bg-grey-200 hover:bg-gray-200">
+                    <img src="{{ asset('images/tambah.png') }}" class="w-5 h-5">
                     Tambah Jadwal
-                    </a>
-                </div>
+                </button>
             </header>
 
             <main class="flex-1 overflow-y-auto p-6">
-                <div class="grid grid-cols-2 gap-6 p-6">
-                    <div class="border rounded-lg p-6">
-                    <h2 class="text-center text-lg font-semibold mb-4">April 2026</h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
 
-                    <div class="grid grid-cols-7 gap-3 text-center" id="calendar">
-                        <!-- tanggal -->
-                        <span class="cursor-pointer" onclick="pilihTanggal(event,1)">1</span>
-                        <span class="cursor-pointer" onclick="pilihTanggal(event,2)">2</span>
-                        <span class="cursor-pointer" onclick="pilihTanggal(event,3)">3</span>
-                        <span class="cursor-pointer" onclick="pilihTanggal(event,4)">4</span>
-                        <span class="cursor-pointer" onclick="pilihTanggal(event,5)">5</span>
-                        <span class="cursor-pointer" onclick="pilihTanggal(event,6)">6</span>
-                        <span class="cursor-pointer" onclick="pilihTanggal(event,7)">7</span>
-
-                        <span class="cursor-pointer" onclick="pilihTanggal(event,8)">8</span>
-                        <span class="cursor-pointer" onclick="pilihTanggal(event,9)">9</span>
-                        <span class="cursor-pointer" onclick="pilihTanggal(event,10)">10</span>
-                        <span class="cursor-pointer" onclick="pilihTanggal(event,11)">11</span>
-
-                        <span class="cursor-pointer bg-blue-200 rounded px-2" onclick="pilihTanggal(event,12)">12</span>
-
-                        <span class="cursor-pointer" onclick="pilihTanggal(event,13)">13</span>
-                        <span class="cursor-pointer" onclick="pilihTanggal(event,14)">14</span>
-                        <span class="cursor-pointer" onclick="pilihTanggal(event,15)">15</span>
-                        <span class="cursor-pointer" onclick="pilihTanggal(event,16)">16</span>
-                        <span class="cursor-pointer" onclick="pilihTanggal(event,17)">17</span>
-                        <span class="cursor-pointer" onclick="pilihTanggal(event,18)">18</span>
-                        <span class="cursor-pointer" onclick="pilihTanggal(event,19)">19</span>
-                        <span class="cursor-pointer" onclick="pilihTanggal(event,20)">20</span>
-                        <span class="cursor-pointer" onclick="pilihTanggal(event,21)">21</span>
-                        <span class="cursor-pointer" onclick="pilihTanggal(event,22)">22</span>
-                        <span class="cursor-pointer" onclick="pilihTanggal(event,23)">23</span>
-                        <span class="cursor-pointer" onclick="pilihTanggal(event,24)">24</span>
-                        <span class="cursor-pointer" onclick="pilihTanggal(event,25)">25</span>
-                        <span class="cursor-pointer" onclick="pilihTanggal(event,26)">26</span>
-                        <span class="cursor-pointer" onclick="pilihTanggal(event,27)">27</span>
-                        <span class="cursor-pointer" onclick="pilihTanggal(event,28)">28</span>
-                        <span class="cursor-pointer" onclick="pilihTanggal(event,29)">29</span>
-                        <span class="cursor-pointer" onclick="pilihTanggal(event,30)">30</span>
+                    <div class="border rounded-lg p-6 bg-white shadow-sm">
+                        <div id="calendar"></div>
                     </div>
-                </div>
 
-                        <!-- KANAN (LIST) -->
-                        <div class="border rounded-lg p-6 h-[400px] overflow-y-auto">
-                            <div id="jadwalList" class="space-y-3">
-                                <p class="text-gray-400">Pilih tanggal dulu</p>
-                            </div>
+                    <div class="border rounded-lg p-6 h-[400px] overflow-y-auto">
+                        <div id="output" class="space-y-3">
+                            <p class="text-gray-400">Pilih tanggal dulu</p>
                         </div>
-
                     </div>
-                </main>
+
+                </div>
+            </main>
+
+            <script>
+                const { Calendar } = calendarjs;
+
+                let markedDates = [];
+
+                fetch('/jadwal/dates')
+                    .then(res => res.json())
+                    .then(dates => {
+                        markedDates = dates;
+                        markCalendarDates();
+                    });
+
+                function markCalendarDates() {
+                setTimeout(() => {
+
+                    document.querySelectorAll('#calendar .lm-calendar-content div').forEach(el => {
+
+                        el.classList.remove('has-jadwal');
+
+                        const num = parseInt(el.textContent.trim());
+
+                        if (isNaN(num)) return;
+
+                        const selectedDate = new Date(calendar.getValue());
+
+                        const yyyy = selectedDate.getFullYear();
+                        const mm = String(selectedDate.getMonth() + 1).padStart(2, '0');
+                        const dd = String(num).padStart(2, '0');
+
+                        const fullDate = `${yyyy}-${mm}-${dd}`;
+
+                        if (markedDates.includes(fullDate)) {
+                            el.classList.add('has-jadwal');
+                        }
+
+                    });
+
+                }, 300);
+            }
+                const calendar = Calendar(document.getElementById('calendar'), {
+                    type: 'inline',  
+                    value: new Date(),
+                    onchange: function(self, value) {
+
+                        const date = new Date(value);
+
+                        markCalendarDates();
+                        const formatted =
+                            date.getFullYear() + "-" +
+                            String(date.getMonth() + 1).padStart(2, '0') + "-" +
+                            String(date.getDate()).padStart(2, '0');
+
+
+                        const output = document.getElementById('output');
+                        output.innerHTML = "<p class='text-gray-400'>Loading...</p>";
+
+                        fetch(`/jadwal/get?date=${formatted}`)
+                            .then(res => res.json())
+                            .then(data => {
+
+                                output.innerHTML = "";
+
+                                if (data.length > 0) {
+                                    data.forEach(item => {
+                                        output.innerHTML += `
+                                            <div class="p-3 border rounded-lg flex items-center justify-between">
+                                                <div>
+                                                    <p class="font-semibold">${item.title}</p>
+                                                    <p class="text-sm text-gray-500">${item.start_time} - ${item.end_time} | ${item.type}</p>
+                                                </div>
+                                            
+                                                <div class="flex items-center gap-2">
+                                                    <button class="flex items-center gap-2 flex-shrink-0">
+                                                        <img src="{{ asset('images/edit.png') }}" class="w-4 h-4 opacity-50" alt="">
+                                                        <img src="{{ asset('images/sampah.png') }}" class="w-4 h-4 opacity-50" alt="">
+                                                    </button>
+                                                </div>
+                                            </div>
+                                        `;
+                                    });
+                                } else {
+                                    output.innerHTML = `<p class="text-gray-400">Tidak ada jadwal</p>`;
+                                }
+
+                            })
+                            .catch(err => {
+                                output.innerHTML = `<p class="text-red-500">Gagal ambil data</p>`;
+                            });
+                    }
+                });
+            </script>
+
+            <div id="modalBuat" class="hidden fixed inset-0 bg-black bg-opacity-40 flex items-center justify-center z-50">
+                <div class="bg-white w-96 p-6 rounded-lg relative">
+                    <div class="flex justify-between items-center mb-4">
+                        <h2 class="font-semibold">Tambah Jadwal</h2>
+                        <button 
+                            onclick="document.getElementById('modalBuat').classList.add('hidden')">
+
+                            <img src="{{ asset('images/silang.png') }}" class="w-5 h-5">    
+                        </button>
+                    </div>
+
+                    <form action="{{ route('jadwal.store') }}" method="POST" class="space-y-3">
+                        @csrf
+
+                        <input type="text" name="name" placeholder="Nama Jadwal"
+                            class="w-full border px-3 py-2 rounded text-sm" required>
+
+                        <input type="date" name="tanggal" placeholder="Tanggal"
+                            class="w-full border px-3 py-2 rounded text-sm" required>
+
+                        <input type="time" name="start_time" placeholder="Waktu Mulai"
+                            class="w-full border px-3 py-2 rounded text-sm" required>
+
+                        <input type="time" name="end_time" placeholder="Waktu Selesai"
+                            class="w-full border px-3 py-2 rounded text-sm" required>
+
+                        <select name="type">
+                            <option value="online">Online</option>
+                            <option value="offline">Offline</option>
+                        </select>
+
+                        <button type="submit"
+                            class="w-full bg-black text-white py-2 rounded">
+                            Simpan
+                        </button>
+                    </form>
+                </div>
             </div>
 
             <script>
-                const dataJadwal = {
-                    12: [
-                        { nama: "Statistika", waktu: "08.00 - 09.00", tipe: "Online" },
-                        { nama: "Basis Data", waktu: "10.00 - 11.00", tipe: "Offline" }
-                    ],
-                    5: [
-                        { nama: "Pemrograman", waktu: "09.00 - 10.00", tipe: "Online" }
-                    ]
-                };
-
-                function pilihTanggal(el, tanggal) {
-
-                    // reset semua warna
-                    document.querySelectorAll("#calendar span").forEach(item => {
-                        item.classList.remove("bg-blue-200");
-                    });
-
-                    // highlight
-                    el.target.classList.add("bg-blue-200", "rounded", "px-2");
-
-                    const list = document.getElementById("jadwalList");
-                    list.innerHTML = "";
-
-                    const jadwal = dataJadwal[tanggal];
-
-                    if (!jadwal) {
-                        list.innerHTML = "<p class='text-gray-400'>Tidak ada jadwal</p>";
-                        return;
+                document.getElementById('modalBuat').addEventListener('click', function(e) {
+                    if (e.target === this) {
+                        this.classList.add('hidden');
                     }
-
-                    jadwal.forEach(item => {
-                        list.innerHTML += `
-                            <div class="border rounded-lg p-3 flex justify-between items-center">
-                                <div>
-                                    <h3 class="font-semibold">${item.nama}</h3>
-                                    <p class="text-sm text-gray-500">${item.waktu} | ${item.tipe}</p>
-                                </div>
-                                <div class="flex gap-2">
-                                    <button>✏️</button>
-                                    <button>🗑️</button>
-                                </div>
-                            </div>
-                        `;
-                    });
-                }
+                });
             </script>
-                </div>
-            </main>
         </div>
     </body>
 </html>

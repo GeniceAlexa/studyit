@@ -6,6 +6,8 @@ use App\Http\Controllers\AuthController;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Session;
 use App\Http\Controllers\RoomController;
+use App\Http\Controllers\JadwalController;
+use App\Http\Controllers\ReminderController;
 
 Route::get('/', function () {
     return view('landingpage');
@@ -27,9 +29,9 @@ Route::get('/room', function () {
 Route::get('/room', [RoomController::class, 'index'])->name('room');
 Route::post('/room/store', [RoomController::class, 'store'])->name('room.store');
 Route::post('/room/gabung/{id}', [RoomController::class, 'gabung'])->name('room.gabung');
-Route::get('/reminder', function () {
-    return view('reminder');
-});
+
+Route::get('/reminder', [ReminderController::class, 'index'])->name('reminder');
+Route::post('/reminder/store', [ReminderController::class, 'store'])->name('reminder.store');
 
 Route::get('/materifile', function () {
     return view('materifile');
@@ -37,7 +39,10 @@ Route::get('/materifile', function () {
 
 Route::get('/jadwal', function () {
     return view('jadwal');
-});
+})->name('jadwal');
+Route::get('/jadwal/get', [JadwalController::class, 'get']);
+Route::get('/jadwal/dates', [JadwalController::class, 'getdates']);
+Route::post('/jadwal/store', [JadwalController::class, 'store'])->name('jadwal.store');
 
 Route::get('/chat', function () {
     $rooms = [
@@ -93,7 +98,7 @@ Route::post('/regis', function (Request $request) {
         'email' => $request->email,
         'password' => $request->password,
         'created_at' => now(),
-        'update_at' => now(),
+        'updated_at' => now(),
     ]);
 
     return redirect('/login')->with('success', 'Registrasi berhasil!');

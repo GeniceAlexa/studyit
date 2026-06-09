@@ -171,7 +171,7 @@
             <p class="ttext-gray-700 text-sm md:text-base leading-relaxed mb-8">
                 Bergabung dengan ratusan mahasiswa Teknik Informatika yang sudah merasakan kemudahan kolaborasi belajar.
             </p>
-            <button class="bg-[#9CCFFF]/50 hover:bg-[#5E7C99] text-white px-6 py-2 rounded-md shadow transition">
+            <button class="bg-[#5E7C99]/50 hover:bg-[#9CCFFF] text-white px-6 py-2 rounded-md shadow transition">
                 Mulai Sekarang
             </button>
         </div>

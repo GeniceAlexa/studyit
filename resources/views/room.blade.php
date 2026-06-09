@@ -114,7 +114,7 @@
                         <button class="text-gray-400 hover:text-gray-600 px-1 flex-shrink-0">
                             <i class="ti ti-dots-vertical text-lg"></i>
                         </button>
-                        </div>
+                    </div>
                         @empty
                         <div class="text-center py-16 text-gray-400">
                             <i class="ti ti-users-off text-4xl block mb-2"></i>
