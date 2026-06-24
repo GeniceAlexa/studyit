@@ -4,21 +4,20 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Reminder extends Model
+class MateriFile extends Model
 {
-    protected $table = 'reminders';
-    protected $primaryKey = 'id_reminder';
+    protected $table = 'files';
+    protected $primaryKey = 'id_file';
     public $timestamps = false;
 
     protected $fillable = [
         'id_user',
+        'id_rooms',
         'title',
-        'description',
-        'deadline',
-        'status'
+        'file_path'
     ];
 
-    public function user()
+    public function uploader()
     {
         return $this->belongsTo(User::class, 'id_user', 'id_user');
     }

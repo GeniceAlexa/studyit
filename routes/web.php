@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Session;
 use App\Http\Controllers\RoomController;
 use App\Http\Controllers\JadwalController;
 use App\Http\Controllers\ReminderController;
+use App\Http\Controllers\MateriFileController;
 
 Route::get('/', function () {
     return view('landingpage');
@@ -33,9 +34,9 @@ Route::post('/room/gabung/{id}', [RoomController::class, 'gabung'])->name('room.
 Route::get('/reminder', [ReminderController::class, 'index'])->name('reminder');
 Route::post('/reminder/store', [ReminderController::class, 'store'])->name('reminder.store');
 
-Route::get('/materifile', function () {
-    return view('materifile');
-});
+Route::get('/materifile', [MateriFileController::class, 'index'])->name('materifile');
+Route::post('/materifile/store', [MateriFileController::class, 'store'])->name('materifile.store');
+Route::delete('/materifile/{id}', [MateriFileController::class, 'destroy'])->name('materifile.destroy');
 
 Route::get('/jadwal', function () {
     return view('jadwal');

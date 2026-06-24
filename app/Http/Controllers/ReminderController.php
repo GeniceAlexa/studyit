@@ -11,9 +11,16 @@ class ReminderController extends Controller
 {
     public function index()
     {
-        $user = Session::get('user');
+        $reminders = Reminder::where('id_user', session('user')->id_user)
+            ->orderBy('deadline', 'asc')
+            ->get();
 
-        $reminders = Reminder::where('id_user', $user->id_user)->get();
+        // Hitung status secara dinamis berdasarkan deadline
+        $reminders->each(function ($reminder) {
+            $reminder->status_dinamis = \Carbon\Carbon::parse($reminder->deadline)->isPast()
+                ? 'tidak aktif'
+                : 'aktif';
+        });
 
         return view('reminder', compact('reminders'));
     }

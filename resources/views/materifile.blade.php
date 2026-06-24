@@ -64,12 +64,10 @@
                 <h2 class="text-gray-600 text-sm">Upload dan bagikan file</h2>
             </div>
 
-            <div>
-                <a href="materifile" class="flex items-center gap-3 px-3 py-2 text-sm shadow-lg text-black-500 rounded-lg bg-grey-200 hover:bg-gray-200">
-                   <img src="{{ asset('images/tambah.png') }}" class="w-6 h-6 rounded-full" alt="">
-                   Upload File
-                </a>
-            </div>
+            <button onclick="document.getElementById('modalBuat').classList.remove('hidden')" class="flex items-center gap-3 px-3 py-2 text-sm shadow-lg text-black rounded-lg bg-grey-200 hover:bg-gray-200">
+                <img src="{{ asset('images/tambah.png') }}" class="w-5 h-5">
+                Buat Reminder
+            </button>
         </header>
 
         <main class="flex-1 overflow-y-auto p-6">
@@ -86,68 +84,83 @@
             </div>
 
             <div class="mt-4 space-y-4">
-                <div class="bg-white rounded-lg p-4 border border-black-100 p-4 flex items-center justify-between">
+                @foreach ($files as $file)
+                <div class="bg-white rounded-lg p-4 border border-black-100 flex items-center justify-between">
                     <div>
-                        <h3>Modul Framework Laravel</h3>
-                        <p class="text-gray-600 text-sm">Citra | 2026 - 02 - 01</p>
+                        <h3>{{ $file->title }}</h3>
+
+                        <p class="text-gray-600 text-sm">
+                            {{ $file->uploader->name ?? 'Unknown' }}
+                            |
+                            {{ date('Y-m-d', strtotime($file->created_at)) }}
+                        </p>
                     </div>
+
                     <div class="flex items-center gap-2">
-                        <button class="flex items-center gap-2 flex-shrink-0">
-                            <img src="{{ asset('images/upload.png') }}" class="w-4 h-4 opacity-50" alt="">
-                            <img src="{{ asset('images/sampah.png') }}" class="w-4 h-4 opacity-50" alt="">
-                        </button>
+
+                        <!-- Download -->
+                        <a href="{{ asset('storage/'.$file->file_path) }}"
+                        download
+                        class="flex items-center">
+                            <img src="{{ asset('images/upload.png') }}"
+                                class="w-4 h-4 opacity-50"
+                                alt="">
+                        </a>
+
+                        <!-- Hapus -->
+                        <form action="{{ route('materifile.destroy', $file->id_file) }}"
+                            method="POST">
+                            @csrf
+                            @method('DELETE')
+
+                            <button type="submit">
+                                <img src="{{ asset('images/sampah.png') }}"
+                                    class="w-4 h-4 opacity-50"
+                                    alt="">
+                            </button>
+                        </form>
+
                     </div>
                 </div>
-                <div class="bg-white rounded-lg p-4 border border-black-100 p-4 flex items-center justify-between">
-                    <div>
-                        <h3>Modul Framework Laravel</h3>
-                        <p class="text-gray-600 text-sm">Citra | 2026 - 02 - 01</p>
-                    </div>
-                    <div class="flex items-center gap-2">
-                        <button class="flex items-center gap-2 flex-shrink-0">
-                            <img src="{{ asset('images/upload.png') }}" class="w-4 h-4 opacity-50" alt="">
-                            <img src="{{ asset('images/sampah.png') }}" class="w-4 h-4 opacity-50" alt="">
-                        </button>
-                    </div>
-                </div>
-                <div class="bg-white rounded-lg p-4 border border-black-100 p-4 flex items-center justify-between">
-                    <div>
-                        <h3>Modul Framework Laravel</h3>
-                        <p class="text-gray-600 text-sm">Citra | 2026 - 02 - 01</p>
-                    </div>
-                    <div class="flex items-center gap-2">
-                        <button class="flex items-center gap-2 flex-shrink-0">
-                            <img src="{{ asset('images/upload.png') }}" class="w-4 h-4 opacity-50" alt="">
-                            <img src="{{ asset('images/sampah.png') }}" class="w-4 h-4 opacity-50" alt="">
-                        </button>
-                    </div>
-                </div>
-                <div class="bg-white rounded-lg p-4 border border-black-100 p-4 flex items-center justify-between">
-                    <div>
-                        <h3>Modul Framework Laravel</h3>
-                        <p class="text-gray-600 text-sm">Citra | 2026 - 02 - 01</p>
-                    </div>
-                    <div class="flex items-center gap-2">
-                        <button class="flex items-center gap-2 flex-shrink-0">
-                            <img src="{{ asset('images/upload.png') }}" class="w-4 h-4 opacity-50" alt="">
-                            <img src="{{ asset('images/sampah.png') }}" class="w-4 h-4 opacity-50" alt="">
-                        </button>
-                    </div>
-                </div>
-                <div class="bg-white rounded-lg p-4 border border-black-100 p-4 flex items-center justify-between">
-                    <div>
-                        <h3>Modul Framework Laravel</h3>
-                        <p class="text-gray-600 text-sm">Citra | 2026 - 02 - 01</p>
-                    </div>
-                    <div class="flex items-center gap-2">
-                        <button class="flex items-center gap-2 flex-shrink-0">
-                            <img src="{{ asset('images/upload.png') }}" class="w-4 h-4 opacity-50" alt="">
-                            <img src="{{ asset('images/sampah.png') }}" class="w-4 h-4 opacity-50" alt="">
-                        </button>
-                    </div>
-                </div>
+                @endforeach
+
             </div>
         </main>
     </div>
+    <div id="modalBuat" class="hidden fixed inset-0 bg-black bg-opacity-40 flex items-center justify-center z-50">
+        <div class="bg-white w-96 p-6 rounded-lg relative">
+            <div class="flex justify-between items-center mb-4">
+                <h2 class="font-semibold">Upload File</h2>
+                <button 
+                    onclick="document.getElementById('modalBuat').classList.add('hidden')">
+
+                    <img src="{{ asset('images/silang.png') }}" class="w-5 h-5">    
+                </button>
+            </div>
+
+            <form action="{{ route('materifile.store') }}" method="POST" enctype="multipart/form-data" class="space-y-3">
+                @csrf
+
+                <input type="text" name="title" placeholder="Judul File" 
+                    class="w-full border px-3 py-2 rounded">
+
+                <input type="file" name="file" placeholder="Klik atau drag file"
+                    class="w-full border px-10 py-20 rounded text-sm">
+
+                <button type="submit"
+                    class="w-full bg-black text-white py-2 rounded">
+                    Upload
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        document.getElementById('modalBuat').addEventListener('click', function(e) {
+            if (e.target === this) {
+                this.classList.add('hidden');
+            }
+        });
+    </script>
 </body>
 </html>

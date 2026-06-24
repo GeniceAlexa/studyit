@@ -76,71 +76,56 @@
             <div>
                 <h2 class="text-sm font-semibold text-gray-800 mb-3">
                     Aktif
-                    <span>({{ $reminders->where('status','aktif')->count() }})</span>
+                    <span>({{ $reminders->where('status_dinamis','aktif')->count() }})</span>
                 </h2>
 
                 <div class="space-y-3">
-                    @forelse ($reminders->where('status','aktif') as $reminder)
+                    @forelse ($reminders->where('status_dinamis','aktif') as $reminder)
                         <div class="bg-white rounded-xl border border-gray-200 p-4 flex justify-between items-center">
                             <div>
                                 <h3 class="text-sm font-semibold text-gray-800">
                                     {{ $reminder->title }}
                                 </h3>
-
                                 <p class="text-xs text-gray-500">
                                     {{ $reminder->description }}
                                 </p>
-
                                 <p class="text-xs text-gray-400">
-                                    {{ $reminder->datetime }}
+                                    {{ $reminder->deadline }}
                                 </p>
                             </div>
-
-                            <button class="text-gray-400 hover:text-gray-600">
-                                ⋮
-                            </button>
+                            <button class="text-gray-400 hover:text-gray-600">⋮</button>
                         </div>
                     @empty
-                        <p class="text-sm text-gray-400">
-                            Belum ada reminder aktif
-                        </p>
+                        <p class="text-sm text-gray-400">Belum ada reminder aktif</p>
                     @endforelse
                 </div>
             </div>
-
 
             {{-- Reminder Tidak Aktif --}}
             <div>
                 <h2 class="text-sm font-semibold text-gray-800 mb-3">
                     Tidak Aktif
-                    <span>({{ $reminders->where('status','tidak aktif')->count() }})</span>
+                    <span>({{ $reminders->where('status_dinamis','tidak aktif')->count() }})</span>
                 </h2>
 
                 <div class="space-y-3">
-                    @forelse ($reminders->where('status','tidak aktif') as $reminder)
+                    @forelse ($reminders->where('status_dinamis','tidak aktif') as $reminder)
                         <div class="bg-white rounded-xl border border-gray-200 p-4 flex justify-between items-center">
                             <div>
                                 <h3 class="text-sm font-semibold text-gray-800">
                                     {{ $reminder->title }}
                                 </h3>
-
                                 <p class="text-xs text-gray-500">
                                     {{ $reminder->description }}
                                 </p>
-
                                 <p class="text-xs text-gray-400">
-                                    {{ $reminder->datetime }}
+                                    {{ $reminder->deadline }}
                                 </p>
                             </div>
-
-                            <button class="text-gray-400 hover:text-gray-600">
-                                ⋮
-                            </button>
+                            <button class="text-gray-400 hover:text-gray-600">⋮</button>
                         </div>
                     @empty
-                        <p class="text-sm text-gray-400">
-                            Belum ada reminder tidak aktif
-                        </p>
+                        <p class="text-sm text-gray-400">Belum ada reminder tidak aktif</p>
                     @endforelse
                 </div>
             </div>
