@@ -46,26 +46,30 @@ class RoomController extends Controller
     // gabung room
     public function gabung($id)
     {
+        $user = Session::get('user');
+
         $room = Room::withCount('members')->findOrFail($id);
 
-        // Cek penuh
         if ($room->members_count >= $room->max_members) {
-            return back()->with('error', 'Room sudah penuh!');
+            return back()->with('error','Room sudah penuh!');
         }
 
-        // Cek apakah user sudah ada di room_members
-        $isJoined = DB::table('room_members')
-            ->where('id_rooms', $id)
-            ->where('id_user', Auth::id())
+        $joined = DB::table('room_members')
+            ->where('id_rooms',$id)
+            ->where('id_user',$user->id_user)
             ->exists();
 
-        if ($isJoined) {
-            return back()->with('error', 'Kamu sudah join!');
+        if($joined){
+            return back()->with('error','Kamu sudah join.');
         }
 
-        // Attach ke pivot
-        $room->members()->attach(Auth::id(), ['role' => 'member']);
+        $room->members()->attach(
+            $user->id_user,
+            [
+                'role'=>'member'
+            ]
+        );
 
-        return back()->with('success', 'Berhasil join room!');
+        return back()->with('success','Berhasil join room.');
     }
 }
