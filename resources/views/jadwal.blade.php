@@ -185,10 +185,28 @@
                                                 </div>
                                             
                                                 <div class="flex items-center gap-2">
-                                                    <button class="flex items-center gap-2 flex-shrink-0">
-                                                        <img src="{{ asset('images/edit.png') }}" class="w-4 h-4 opacity-50" alt="">
-                                                        <img src="{{ asset('images/sampah.png') }}" class="w-4 h-4 opacity-50" alt="">
+                                                    <!-- Edit -->
+                                                    <button type="button" onclick="editJadwal(${item.id_jadwal})">
+                                                        <img src="{{ asset('images/edit.png') }}"
+                                                            class="w-4 h-4 opacity-50">
+
                                                     </button>
+                                                    <!-- Hapus -->
+                                                    <form action="/jadwal/${item.id_jadwal}" method="POST">
+
+                                                        @csrf
+                                                        @method('DELETE')
+
+                                                        <button type="submit">
+
+                                                            <img src="{{ asset('images/sampah.png') }}"
+                                                                class="w-4 h-4 opacity-50"
+                                                                alt="Hapus">
+
+                                                        </button>
+
+                                                    </form>
+
                                                 </div>
                                             </div>
                                         `;
@@ -250,6 +268,117 @@
                         this.classList.add('hidden');
                     }
                 });
+            </script>
+
+            <!-- Modal Edit Jadwal -->
+            <div id="modalEdit" 
+                class="hidden fixed inset-0 bg-black bg-opacity-40 flex items-center justify-center z-50">
+
+                <div class="bg-white w-96 p-6 rounded-lg relative">
+
+                    <div class="flex justify-between items-center mb-4">
+
+                        <h2 class="font-semibold">
+                            Edit Jadwal
+                        </h2>
+
+                        <button onclick="closeEdit()">
+
+                            <img src="{{ asset('images/silang.png') }}" 
+                                class="w-5 h-5">
+
+                        </button>
+
+                    </div>
+
+
+                    <form id="formEdit" method="POST" class="space-y-3">
+                        @csrf
+                        @method('PUT')
+                        <input type="text" 
+                            id="edit_name"
+                            name="name"
+                            placeholder="Nama Jadwal"
+                            class="w-full border px-3 py-2 rounded text-sm"
+                            required>
+                        <input type="date"
+                            id="edit_tanggal"
+                            name="tanggal"
+                            class="w-full border px-3 py-2 rounded text-sm"
+                            required>
+                        <input type="time"
+                            id="edit_start_time"
+                            name="start_time"
+                            class="w-full border px-3 py-2 rounded text-sm"
+                            required>
+                        <input type="time"
+                            id="edit_end_time"
+                            name="end_time"
+                            class="w-full border px-3 py-2 rounded text-sm"
+                            required>
+
+                        <select name="type"
+                                id="edit_type"
+                                class="w-full border px-3 py-2 rounded text-sm">
+                            <option value="online">
+                                Online
+                            </option>
+                            <option value="offline">
+                                Offline
+                            </option>
+                        </select>
+                        <button type="submit"
+                                class="w-full bg-black text-white py-2 rounded">
+                            Simpan Perubahan
+                        </button>
+                    </form>
+                </div>
+            </div>
+            <script>
+                function editJadwal(id)
+                    {
+                        fetch(`/jadwal/show/${id}`)
+                        .then(res => res.json())
+                        .then(data => {
+
+                            document.getElementById('modalEdit')
+                                .classList.remove('hidden');
+
+
+                            document.getElementById('formEdit').action =
+                                `/jadwal/${id}`;
+
+
+                            document.getElementById('edit_name').value =
+                                data.title;
+
+
+                            document.getElementById('edit_tanggal').value =
+                                data.date;
+
+
+                            document.getElementById('edit_start_time').value =
+                                data.start_time;
+
+
+                            document.getElementById('edit_end_time').value =
+                                data.end_time;
+
+
+                            document.getElementById('edit_type').value =
+                                data.type;
+
+                        })
+                        .catch(error=>{
+                            console.log(error);
+                            alert("Data jadwal gagal diambil");
+                        });
+                    }
+                    function closeEdit()
+                    {
+                        document.getElementById('modalEdit')
+                            .classList.add('hidden');
+                    }
             </script>
         </div>
     </body>

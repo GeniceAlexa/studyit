@@ -39,12 +39,23 @@ Route::get('/materifile', [MateriFileController::class, 'index'])->name('materif
 Route::post('/materifile/store', [MateriFileController::class, 'store'])->name('materifile.store');
 Route::delete('/materifile/{id}', [MateriFileController::class, 'destroy'])->name('materifile.destroy');
 
-Route::get('/jadwal', function () {
-    return view('jadwal');
-})->name('jadwal');
-Route::get('/jadwal/get', [JadwalController::class, 'get']);
-Route::get('/jadwal/dates', [JadwalController::class, 'getdates']);
-Route::post('/jadwal/store', [JadwalController::class, 'store'])->name('jadwal.store');
+Route::get('/jadwal', [JadwalController::class,'index'])
+    ->name('jadwal');
+
+Route::get('/jadwal/get', [JadwalController::class,'get']);
+
+Route::get('/jadwal/dates', [JadwalController::class,'getdates']);
+
+Route::post('/jadwal/store', [JadwalController::class,'store'])
+    ->name('jadwal.store');
+
+Route::get('/jadwal/show/{id}', [JadwalController::class,'show']);
+
+Route::put('/jadwal/{id}', [JadwalController::class,'update'])
+    ->name('jadwal.update');
+
+Route::delete('/jadwal/{id}', [JadwalController::class,'destroy'])
+    ->name('jadwal.destroy');
 
 Route::get('/chat', [ChatController::class, 'index']);
 
