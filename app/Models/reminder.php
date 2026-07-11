@@ -4,7 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Reminder extends Model
+class reminder extends Model
 {
     protected $table = 'reminders';
     protected $primaryKey = 'id_reminder';

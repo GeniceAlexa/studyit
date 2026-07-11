@@ -6,6 +6,7 @@ use App\Models\MateriFile;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use App\Models\Aktivitas;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Storage;
 
@@ -35,11 +36,20 @@ class MateriFileController extends Controller
 
         $user = Session::get('user');
 
-        MateriFile::create([
+        $materi = MateriFile::create([
+            'id_user'=>$user->id_user,
+            'id_rooms'=>null,
+            'title'=>$request->title,
+            'file_path'=>$path
+        ]);
+
+
+        // simpan aktivitas
+        Aktivitas::create([
             'id_user' => $user->id_user,
-            'id_rooms' => null,
-            'title' => $request->title,
-            'file_path' => $path
+            'jenis' => 'materi',
+            'deskripsi' => $user->name . ' mengunggah materi ' . $request->title,
+            'icon' => 'materi.png'
         ]);
 
         return redirect()->back()->with('success', 'File berhasil diupload');

@@ -10,6 +10,7 @@ use App\Http\Controllers\JadwalController;
 use App\Http\Controllers\ReminderController;
 use App\Http\Controllers\MateriFileController;
 use App\Http\Controllers\ChatController;
+use App\Http\Controllers\DashboardController;
 
 Route::get('/', function () {
     return view('landingpage');
@@ -24,6 +25,9 @@ Route::get('/dashboard', function () {
     return view('dashboard');
 });
 
+Route::get('/dashboard', [DashboardController::class, 'index'])
+    ->name('dashboard');
+
 Route::get('/room', function () {
     return view('room');
 });
@@ -34,6 +38,13 @@ Route::post('/room/gabung/{id}', [RoomController::class, 'gabung'])->name('room.
 
 Route::get('/reminder', [ReminderController::class, 'index'])->name('reminder');
 Route::post('/reminder/store', [ReminderController::class, 'store'])->name('reminder.store');
+Route::put('/reminder/{id}', [ReminderController::class,'update'])
+    ->name('reminder.update');
+Route::put('/reminder/{id}', [ReminderController::class,'update'])
+    ->name('reminder.update');
+Route::delete('/reminder/{id}',
+    [ReminderController::class,'destroy'])
+    ->name('reminder.destroy');
 
 Route::get('/materifile', [MateriFileController::class, 'index'])->name('materifile');
 Route::post('/materifile/store', [MateriFileController::class, 'store'])->name('materifile.store');

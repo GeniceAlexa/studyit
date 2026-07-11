@@ -76,11 +76,11 @@
             <div>
                 <h2 class="text-sm font-semibold text-gray-800 mb-3">
                     Aktif
-                    <span>({{ $reminders->where('status_dinamis','aktif')->count() }})</span>
+                    <span>({{ $reminders->where('status','active')->count() }})</span>
                 </h2>
 
                 <div class="space-y-3">
-                    @forelse ($reminders->where('status_dinamis','aktif') as $reminder)
+                    @forelse ($reminders->where('status','active') as $reminder)
                         <div class="bg-white rounded-xl border border-gray-200 p-4 flex justify-between items-center">
                             <div>
                                 <h3 class="text-sm font-semibold text-gray-800">
@@ -93,7 +93,50 @@
                                     {{ $reminder->deadline }}
                                 </p>
                             </div>
-                            <button class="text-gray-400 hover:text-gray-600">⋮</button>
+                            <div class="relative">
+                                <button 
+                                    onclick="toggleMenu('{{ $reminder->id_reminder }}')"
+                                    class="text-gray-400 hover:text-gray-600 text-xl">
+                                    ⋮
+                                </button>
+
+                                <div id="menu-{{ $reminder->id_reminder }}" 
+                                    class="hidden absolute right-0 mt-2 w-28 bg-white border rounded-lg shadow-lg z-10">
+
+
+                                    <button 
+                                        onclick="openEditModal(
+                                            this.dataset.id,
+                                            this.dataset.title,
+                                            this.dataset.description,
+                                            this.dataset.deadline
+                                        )"
+                                        data-id="{{ $reminder->id_reminder }}"
+                                        data-title="{{ $reminder->title }}"
+                                        data-description="{{ $reminder->description }}"
+                                        data-deadline="{{ date('Y-m-d\TH:i', strtotime($reminder->deadline)) }}"
+                                        class="block w-full text-left px-3 py-2 text-sm hover:bg-gray-100">
+                                        Edit
+                                    </button>
+
+
+                                    <form action="{{ route('reminder.destroy', $reminder->id_reminder) }}"
+                                        method="POST">
+
+                                        @csrf
+                                        @method('DELETE')
+
+                                        <button type="submit"
+                                            onclick="return confirm('Hapus reminder ini?')"
+                                            class="w-full text-left px-3 py-2 text-sm text-red-500 hover:bg-gray-100">
+                                            Hapus
+                                        </button>
+
+                                    </form>
+
+                                </div>
+
+                            </div>
                         </div>
                     @empty
                         <p class="text-sm text-gray-400">Belum ada reminder aktif</p>
@@ -105,11 +148,11 @@
             <div>
                 <h2 class="text-sm font-semibold text-gray-800 mb-3">
                     Tidak Aktif
-                    <span>({{ $reminders->where('status_dinamis','tidak aktif')->count() }})</span>
+                    <span>({{ $reminders->where('status','inactive')->count() }})</span>
                 </h2>
 
                 <div class="space-y-3">
-                    @forelse ($reminders->where('status_dinamis','tidak aktif') as $reminder)
+                    @forelse ($reminders->where('status','inactive') as $reminder)
                         <div class="bg-white rounded-xl border border-gray-200 p-4 flex justify-between items-center">
                             <div>
                                 <h3 class="text-sm font-semibold text-gray-800">
@@ -122,7 +165,7 @@
                                     {{ $reminder->deadline }}
                                 </p>
                             </div>
-                            <button class="text-gray-400 hover:text-gray-600">⋮</button>
+                            
                         </div>
                     @empty
                         <p class="text-sm text-gray-400">Belum ada reminder tidak aktif</p>
@@ -162,6 +205,63 @@
             </form>
         </div>
     </div>
+    <div id="modalEdit" class="hidden fixed inset-0 bg-black bg-opacity-40 flex items-center justify-center z-50">
+
+        <div class="bg-white w-96 p-6 rounded-lg">
+
+            <div class="flex justify-between items-center mb-4">
+                <h2 class="font-semibold">
+                    Edit Reminder
+                </h2>
+
+                <button onclick="closeEditModal()">
+                    <img src="{{ asset('images/silang.png') }}" class="w-5 h-5">
+                </button>
+            </div>
+
+
+            <form id="formEdit" method="POST" class="space-y-3">
+
+                @csrf
+                @method('PUT')
+
+
+                <input 
+                    id="editJudul"
+                    type="text"
+                    name="judul"
+                    class="w-full border px-3 py-2 rounded"
+                    required
+                >
+
+
+                <textarea
+                    id="editDeskripsi"
+                    name="deskripsi"
+                    class="w-full border px-3 py-2 rounded"
+                    required
+                ></textarea>
+
+
+                <input
+                    id="editTanggal"
+                    type="datetime-local"
+                    name="waktutanggal"
+                    class="w-full border px-3 py-2 rounded"
+                    required
+                >
+
+
+                <button
+                    class="w-full bg-black text-white py-2 rounded">
+                    Simpan
+                </button>
+
+            </form>
+
+        </div>
+
+    </div>
 
     <script>
         document.getElementById('modalBuat').addEventListener('click', function(e) {
@@ -169,6 +269,40 @@
                 this.classList.add('hidden');
             }
         });
+    </script>
+    <script>
+        function toggleMenu(id){
+            let menu = document.getElementById('menu-' + id);
+            document.querySelectorAll('[id^="menu-"]').forEach(function(item){
+                if(item !== menu){
+                    item.classList.add('hidden');
+                }
+            });
+            menu.classList.toggle('hidden');
+        }
+
+        document.addEventListener('click', function(e){
+            if(!e.target.closest('.relative')){
+                document.querySelectorAll('[id^="menu-"]')
+                .forEach(function(item){
+                    item.classList.add('hidden');
+                });
+            }
+        });
+    </script>
+    <script>
+        function openEditModal(id, judul, deskripsi, tanggal){
+
+            document.getElementById('modalEdit')
+                .classList.remove('hidden');
+
+            document.getElementById('editJudul').value = judul;
+            document.getElementById('editDeskripsi').value = deskripsi;
+            document.getElementById('editTanggal').value = tanggal;
+
+            document.getElementById('formEdit').action =
+                '/reminder/' + id;
+        }
     </script>
 </body>
 </html>

@@ -116,36 +116,33 @@
             <div>
                 <h2 class="text-sm font-semibold text-gray-800 mb-3">Aktivitas Terbaru</h2>
                 <div class="bg-white rounded-xl border border-gray-200 overflow-hidden divide-y divide-gray-100">
-                    <div class="flex items-center justify-between px-4 py-3 hover:bg-gray-50 transition">
-                        <div class="flex items-center gap-3">
-                            <img src="{{ asset('images/materi.png') }}" class="w-4 h-4 opacity-60" alt="">
-                            <span class="text-sm text-gray-700">David mengunggah materi peluang.pdf</span>
+                    <div class="bg-white rounded-xl border border-gray-200 overflow-hidden divide-y divide-gray-100">
+
+                        @foreach($aktivitas as $item)
+
+                        <div class="flex items-center justify-between px-4 py-3 hover:bg-gray-50">
+
+                            <div class="flex items-center gap-3">
+
+                                <img src="{{ asset('images/'.$item->icon) }}"
+                                    class="w-4 h-4">
+
+                                <span class="text-sm text-gray-700">
+                                    {{ $item->deskripsi }}
+                                </span>
+
+                            </div>
+
+
+                            <span class="text-xs text-gray-400">
+                                {{ $item->created_at->diffForHumans() }}
+                            </span>
+
                         </div>
-                        <div class="flex items-center gap-1 text-xs text-gray-400">
-                            <img src="{{ asset('images/time.png') }}" class="w-3 h-3 opacity-50" alt="">
-                            2 jam yang lalu
+
+                        @endforeach
+
                         </div>
-                    </div>
-                    <div class="flex items-center justify-between px-4 py-3 hover:bg-gray-50 transition">
-                        <div class="flex items-center gap-3">
-                            <img src="{{ asset('images/jadwal.png') }}" class="w-4 h-4 opacity-60" alt="">
-                            <span class="text-sm text-gray-700">Room 'Basis Data' ditambahkan</span>
-                        </div>
-                        <div class="flex items-center gap-1 text-xs text-gray-400">
-                            <img src="{{ asset('images/time.png') }}" class="w-3 h-3 opacity-50" alt="">
-                            2 jam yang lalu
-                        </div>
-                    </div>
-                    <div class="flex items-center justify-between px-4 py-3 hover:bg-gray-50 transition">
-                        <div class="flex items-center gap-3">
-                            <img src="{{ asset('images/materi.png') }}" class="w-4 h-4 opacity-60" alt="">
-                            <span class="text-sm text-gray-700">David mengunggah materi peluang.pdf</span>
-                        </div>
-                        <div class="flex items-center gap-1 text-xs text-gray-400">
-                            <img src="{{ asset('images/time.png') }}" class="w-3 h-3 opacity-50" alt="">
-                            2 jam yang lalu
-                        </div>
-                    </div>
                 </div>
             </div>
         </div>
