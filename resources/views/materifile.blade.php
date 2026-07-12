@@ -79,7 +79,9 @@
 
             <div class="space-y-4 mt-6">
                 <div class="flex items-center gap-2 bg-white-100 border border-black-100 rounded-lg px-2 py-2 w-fit">
-                    <h2 class="text-sm font-medium underline underline-offset-2"> <span> {{ optional(session('reminders'))->id_user ?? '0' }}</span> Total File</h2>
+                    <h2 class="text-sm font-medium underline underline-offset-2">
+                        <span>{{ $files->count() }}</span> Total File
+                    </h2>
                 </div>
             </div>
 
@@ -99,9 +101,9 @@
                     <div class="flex items-center gap-2">
 
                         <!-- Download -->
-                        <a href="{{ asset('storage/'.$file->file_path) }}"
-                        download
-                        class="flex items-center">
+                        <a href="{{ route('materifile.open', $file->id_file) }}"
+                            target="_blank"
+                            class="flex items-center">
                             <img src="{{ asset('images/upload.png') }}"
                                 class="w-4 h-4 opacity-50"
                                 alt="">

@@ -55,6 +55,15 @@ class MateriFileController extends Controller
         return redirect()->back()->with('success', 'File berhasil diupload');
     }
 
+    public function open($id)
+    {
+        $file = MateriFile::findOrFail($id);
+
+        $path = storage_path('app/public/'.$file->file_path);
+
+        return response()->file($path);
+    }
+
     public function destroy($id)
     {
         $file = MateriFile::findOrFail($id);

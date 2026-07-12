@@ -49,6 +49,8 @@ Route::delete('/reminder/{id}',
 Route::get('/materifile', [MateriFileController::class, 'index'])->name('materifile');
 Route::post('/materifile/store', [MateriFileController::class, 'store'])->name('materifile.store');
 Route::delete('/materifile/{id}', [MateriFileController::class, 'destroy'])->name('materifile.destroy');
+Route::get('/materifile/open/{id}', [MateriFileController::class, 'open'])
+    ->name('materifile.open');
 
 Route::get('/jadwal', [JadwalController::class,'index'])
     ->name('jadwal');
